@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('references', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreignId('item_id')->constrained('items');
+            $table->foreignId('reference_id')->constrained('items');
         });
     }
 
