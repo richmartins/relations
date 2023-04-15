@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('references', function (Blueprint $table) {
-            $table->foreignId('item_id')->constrained('items');
-            $table->foreignId('reference_id')->constrained('items');
+        Schema::create('item_references', function (Blueprint $table) {
+            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
+            $table->foreignId('referenced_item_id')->constrained('items')->onDelete('cascade');
+
+            $table->primary(['item_id', 'referenced_item_id']);
+
         });
     }
 

@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix("v1")->group(function () {
-    Route::resource('items', ItemController::class);
+    Route::resource('items', ItemController::class)->except(['create', 'edit']);
     Route::resource('references', ReferenceController::class);
     Route::resource('categories', CategoryController::class);
 });
