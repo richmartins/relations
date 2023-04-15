@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 use App\Models\Item;
 use App\Http\Resources\ItemResource;
-
 
 class ItemController extends Controller
 {
@@ -43,11 +43,10 @@ class ItemController extends Controller
         return response()->json(["item" => new ItemResource(Item::findOrFail($id))]);
     }
 
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
         $item = Item::findOrFail($id);
         $this->validate($request, [
@@ -64,7 +63,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): Response
     {
         $item = Item::findOrFail($id);
 
