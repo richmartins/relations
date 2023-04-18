@@ -22,14 +22,16 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function () {
-    Route::resource('items', ItemController::class)->except(['create', 'edit']);
-    Route::resource('categories', CategoryController::class)->except(['create', 'edit']);
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('v1')->group(function () {
+        Route::resource('items', ItemController::class)->except(['create', 'edit']);
+        Route::resource('categories', CategoryController::class)->except(['create', 'edit']);
 
-    Route::prefix('item/{id}/')->group(function() {
-       Route::get('references', [ItemReferencesController::class => 'index']);
-       Route::post('references', [ItemReferencesController::class => 'store']);
-       Route::put('references', [ItemReferencesController::class => 'update']);
-       Route::delete('references', [ItemReferencesController::class => 'destroy']);
+        Route::prefix('item/{id}/')->group(function () {
+            Route::get('references', [ItemReferencesController::class => 'index']);
+            Route::post('references', [ItemReferencesController::class => 'store']);
+            Route::put('references', [ItemReferencesController::class => 'update']);
+            Route::delete('references', [ItemReferencesController::class => 'destroy']);
+        });
     });
 });
