@@ -11,11 +11,12 @@ onMounted(async () => {
 </script>
 
 <template>
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav class="flex items-center justify-between flex-wrap bg-black p-6">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
             <img class="mr-5 object-cover h-20" :src="logo" alt="logo" />
             <span class="font-semibold text-xl tracking-tight">Relations</span>
         </div>
+        1
         <div class="block lg:hidden">
             <button
                 class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
