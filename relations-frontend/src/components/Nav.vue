@@ -54,18 +54,27 @@ onMounted(async () => {
                     Contact
                 </router-link>
             </div>
-            <div>
-                <div v-if="authStore.user">
-                    <h2>{{ authStore.user.name }}</h2>
-                    <p>{{ authStore.user.email }}</p>
-                </div>
-                <div v-else>
+            <div class="text-white px-5">
+                <template v-if="!authStore.user">
                     <router-link
                         :to="{ name: 'login' }"
-                        class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                        class="block rounded py-2 pr-4 pl-3 text-gray-50 hover:bg-gray-700"
                         >Login</router-link
                     >
-                </div>
+                    <router-link
+                        :to="{ name: 'register' }"
+                        class="block rounded py-2 pr-4 pl-3 text-gray-50 hover:bg-gray-700 md:border-0"
+                        >Register</router-link
+                    >
+                </template>
+                <template v-else>
+                    <button
+                        @click="authStore.handleLogout"
+                        class="block rounded py-2 pr-4 pl-3 text-gray-50 hover:bg-gray-700 md:border-0"
+                    >
+                        Logout
+                    </button>
+                </template>
             </div>
         </div>
     </nav>

@@ -49,16 +49,30 @@ const form = {
                 >
                     <button
                         class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-                        type="button"
+                        type="submit"
                     >
                         Sign in
                     </button>
-                    <button
+
+                    <router-link
+                        to="/forgot-password"
                         class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded"
-                        type="button"
                     >
-                        Register
-                    </button>
+                        Forgot Password?
+                    </router-link>
+                </div>
+                <div
+                    class="my-5 w-full flex flex-row items-center justify-evenly"
+                >
+                    <p class="text-base text-[#adadad]">
+                        Not a member yet?
+                        <router-link
+                            to="/register"
+                            class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded"
+                        >
+                            Sign Up
+                        </router-link>
+                    </p>
                 </div>
             </div>
         </form>

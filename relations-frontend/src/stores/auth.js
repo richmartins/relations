@@ -9,7 +9,7 @@ export const useAuthStore = defineStore("auth", {
     }),
     getters: {
         user: (state) => state.authUser,
-        erros: (state) => state.authErrors,
+        errors: (state) => state.authErrors,
         status: (state) => state.authStatus,
     },
     actions: {
@@ -57,6 +57,34 @@ export const useAuthStore = defineStore("auth", {
         async handleLogout() {
             await axios.post("/logout");
             this.authUser = null;
+        },
+
+        async handleForgotPassword(email) {
+            this.authErrors = [];
+
+            this.getToken();
+            try {
+                const response = await axios.post("forgot-password", {
+                    email: email,
+                });
+                this.authStatus = response.data.status;
+            } catch (error) {
+                if (error.response.stauts === 422) {
+                    this.authErrors = error.response.data.errors;
+                }
+            }
+        },
+
+        async handleResetPassword(resetData) {
+            this.authErrors = [];
+            try {
+                const response = await axios.post("reset-password", resetData);
+                this.authStatus = response.data.status;
+            } catch (error) {
+                if (error.response.stauts === 422) {
+                    this.authErrors = error.response.data.errors;
+                }
+            }
         },
     },
 });
