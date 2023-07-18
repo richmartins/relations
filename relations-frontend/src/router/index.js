@@ -5,6 +5,7 @@ import Register from "@/components/Auth/Register.vue";
 import ResetPassword from "@/components/Auth/ResetPassword.vue";
 import Contact from "@/components/Contact.vue";
 import Home from "@/components/Home.vue";
+import Item from "@/components/Item.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -15,6 +16,7 @@ const routes = [
     { path: "/contact", name: "contact", component: Contact },
     { path: "/login", name: "login", component: Login },
     { path: "/register", name: "register", component: Register },
+    { path: "/item/:id", name: "item", component: Item },
     {
         path: "/forgot-password",
         name: "ForgotPassword",
